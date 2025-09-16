@@ -1,0 +1,103 @@
+
+//
+public class LinkList {
+
+    private LinkNode head;
+
+    public static class LinkNode {
+        private int value;
+        private LinkNode next;
+
+        public LinkNode(int head){
+            this.value=head;
+            this.next=null;
+        }
+    }
+
+    //Display Operation...
+    public void display(){
+        if(head==null){
+            System.out.println("Empty");
+        }
+        LinkNode current = head;
+        while(current.next!=null){
+            System.out.print(current.value+"->");
+            current = current.next;
+        }
+        System.out.print(current.value);
+    }
+
+    //insert at head
+    public void insertFirst(int value){
+        LinkNode newNode = new LinkNode(value);
+        newNode.next=head;
+        head= newNode;
+    }
+
+    //insert at last
+    public void insertLast(int value){
+        LinkNode newNode = new LinkNode(value);
+        LinkNode current = head;
+        while(current.next!=null){
+            current = current.next;
+        }
+        current.next= newNode;
+    }
+
+    public void insertAtGivenPosition(int value, int position){
+        LinkNode newNode = new LinkNode(value);
+        if(position==1){
+            newNode.next=head;
+            head=newNode;
+        }
+        // 23 - 54 - 75 - 34
+        else{
+            LinkNode previous = head;
+            int count = 1;
+            while(count < position-1){
+                previous = previous.next;
+                count++;
+            }
+            // to add node at the given position we must know after and before node.
+            LinkNode current = previous.next; // for maintaining forward node here taken "current"
+            previous.next = newNode;
+            newNode.next=current;
+        }
+    }
+
+
+
+
+    public static void main(String[] args) {
+        LinkList one = new LinkList();
+
+        one.head= new LinkNode(12);
+        LinkNode two = new LinkNode(43);
+        LinkNode three = new LinkNode(22);
+        LinkNode four = new LinkNode(93);
+        LinkNode five = new LinkNode(82);
+
+        one.head.next=two;
+        two.next=three;
+        three.next=four;
+        four.next=five;
+
+
+        System.out.println("\nafter insertion...");
+        one.insertFirst(293);
+        one.insertFirst(482);
+        one.display();
+
+        System.out.println("\nAfter inserting node at last");
+        one.insertLast(929);
+        one.insertLast(203);
+        one.display();
+
+        System.out.println("\nAfter adding at given index");
+        one.insertAtGivenPosition(888,4);
+        one.display();
+
+
+
+    }
+}
