@@ -1,0 +1,37 @@
+package Arrays;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class LeadersInArray {
+
+    public static List<Integer> findLeaders(int[] arr){
+        List<Integer> ans = new ArrayList<>();
+        int max=Integer.MIN_VALUE;
+        int n = arr.length-1;
+        for(int i=n; i>=0; i--){
+
+            if(arr[i]>max){
+                ans.add(arr[i]);
+            }
+            max = maxi(arr[i], max);
+        }
+        return ans.stream().sorted().toList();
+
+    }
+
+    public static int maxi(int a, int b){
+        if(a>b) return a;
+        else return b;
+    }
+
+    public static void main(String[] args) {
+
+
+        int[] a = { 2,3,1,6,4,3,1,2};
+
+        List<Integer> result = findLeaders(a);
+
+        result.forEach(e->System.out.print(e+" "));
+    }
+}
