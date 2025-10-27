@@ -1,0 +1,40 @@
+package Arrays;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class PascalsTriangle {
+
+    public static List<Integer> pascalsTriangle(int n){
+
+        int ans = 1;
+        List<Integer> ansList = new ArrayList<>();
+        ansList.add(ans);
+
+        for(int col = 1; col<n; col++){
+            ans = ans*(n-col);
+            ans= ans/col;
+            ansList.add(ans);
+        }
+        return ansList;
+    }
+
+
+    public static void main(String[] args) {
+
+        int n = 6;
+
+        List<List<Integer>> answer = new ArrayList<>();
+
+        for(int i=1; i<=n; i++){
+            answer.add(pascalsTriangle(i));
+        }
+
+        for(List<Integer> e : answer){
+            for(Integer k : e){
+                System.out.print(k+" ");
+            }
+            System.out.println();
+        }
+    }
+}
