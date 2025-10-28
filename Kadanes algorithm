@@ -1,0 +1,42 @@
+package Arrays;
+
+public class KadanesmAlgorithm {
+
+    //optimal solution
+
+    public static Long findSum(int[] arr){
+        Long max = Long.MIN_VALUE;
+        int start = 0;
+        Long sum= 0L;
+        int s=0; int l=0;
+
+        for(int i=0; i<arr.length; i++){
+
+            if(sum==0){
+                start=i;
+            }
+            sum+=arr[i];
+
+            if(sum>max){
+                max=sum;
+                s= start;
+                l=i;
+
+            }
+
+            if(sum<0){
+                sum=0L;
+            }
+        }
+
+        System.out.println(s+" "+l);
+        return max;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = { 1,2,3,4,-5};
+
+        System.out.println(findSum(arr));
+    }
+}
