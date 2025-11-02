@@ -1,0 +1,49 @@
+package Arrays;
+
+import java.lang.reflect.Array;
+import java.util.Arrays;
+
+public class SecondLargestAndSecondSmallest {
+
+    public static int secondLargest(int[] arr, int n){
+
+        int largest = arr[0];
+        int slargest = -1;
+
+        for(int j=1; j<n; j++){
+            if(arr[j]>largest ){
+                slargest=largest;
+                largest=arr[j];
+            } else if (arr[j]<largest && arr[j]>slargest) {
+                slargest=arr[j];
+            }
+        }
+        return slargest;
+    }
+
+    public static int secondSmallest(int[] arr, int n){
+
+        int smallest = arr[0];
+        int ssmallest = Integer.MAX_VALUE;
+        for(int j=1; j<n; j++){
+            if(arr[j]<smallest){
+                ssmallest=smallest;
+                smallest=arr[j];
+            }
+            else if(arr[j]>smallest && arr[j]<ssmallest){
+                ssmallest=arr[j];
+            }
+        }
+        return ssmallest;
+    }
+
+    public static void main(String[] args) {
+
+        int[] arr = { 2,4,1,2,6,8,3,5,1};
+        Arrays.stream(arr).sorted().forEach(e->System.out.print(" "+e));
+
+        System.out.print(" Second largest Element : "+secondLargest(arr, arr.length));
+        System.out.println();
+        System.out.println("Second smallest Element : "+secondSmallest(arr, arr.length));
+    }
+}
