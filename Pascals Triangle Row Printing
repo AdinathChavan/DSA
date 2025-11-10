@@ -1,0 +1,51 @@
+package Practice;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
+
+public class PascalsTriangle {
+
+
+    public static List<Integer> pascalsTriange(int row ){
+        int ans = 1;
+
+
+        List<Integer> temp = new ArrayList<>();
+        temp.add(ans);
+
+        for(int col = 1; col < row; col++){
+            ans = ans * (row-col);
+            ans = ans/col;
+            temp.add(ans);
+        }
+
+        //  for(int col = 1; col<row; col++){
+        //            ans = ans*(row-col);
+        //            ans= ans/col;
+        //            ansList.add(ans);
+        //        }
+
+        return temp;
+
+
+
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int row = sc.nextInt();
+        List<List<Integer>> list = new ArrayList<>();
+        for(int i=1; i<=row; i++){
+            list.add(pascalsTriange(i));
+        }
+
+        for(List<Integer> e : list){
+            for(Integer k : e){
+                System.out.print(k+" ");
+            }
+            System.out.println();
+        }
+
+    }
+}
