@@ -1,0 +1,39 @@
+package Arrays;
+
+public class Basic {
+
+    public static void moveEnd(int[] arr){
+        int t=0;
+        for(int i=0; i<arr.length; i++){
+            if(arr[i]==0){
+                t=i;
+                break;
+            }
+        }
+
+        for(int i =t+1; i<arr.length; i++){
+            if(arr[i]!=0){
+                int temp = arr[t];
+                arr[t]=arr[i];
+                arr[i]=temp;
+                t++;
+            }
+        }
+
+
+
+
+
+    }
+
+
+    public static void main(String[] args) {
+        int[] arr = { 2,3,0,8,5,0,7,0,5,3,0};
+
+        moveEnd(arr);
+
+        for(int e : arr){
+            System.out.print("  "+e);
+        }
+    }
+}
