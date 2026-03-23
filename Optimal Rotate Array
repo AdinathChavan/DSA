@@ -1,0 +1,41 @@
+package Arrays;
+
+public class OptimalRotateArray {
+
+    public static void rotateArray(int[] arr, int n){
+
+
+        //for right rotation do  0 to n-k in 1st
+        // in second n-k+1 to n-1
+        // in third 0 to n-1
+        reverseArray(arr,0,4);
+        reverseArray(arr,n+1,arr.length-1);
+        reverseArray(arr,0,arr.length-1);
+
+        for(int e : arr){
+            System.out.print(" "+e);
+        }
+
+    }
+
+    public static void reverseArray(int [] arr, int start, int end){
+
+        while(start<=end){
+
+            int temp = arr[start];
+            arr[start]= arr[end];
+            arr[end]=temp;
+
+            start++;
+            end--;
+        }
+    }
+
+
+    public static void main(String[] args) {
+
+        int[] arr = { 5,3,7,8,9,12,2,67,76};
+
+        rotateArray(arr, 4);
+    }
+}
