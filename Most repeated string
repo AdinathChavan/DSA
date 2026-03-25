@@ -1,0 +1,29 @@
+import java.util.HashMap;
+import java.util.Map;
+
+public class MostRepeatedString {
+    public static void main(String[] args) {
+        String[] arr = {"apple", "banana", "apple", "orange", "banana", "apple"};
+
+        Map<String, Integer> map = new HashMap<>();
+
+        // Count frequency
+        for (String str : arr) {
+            map.put(str, map.getOrDefault(str, 0) + 1);
+        }
+
+        // Find most repeated string
+        String mostRepeated = null;
+        int maxCount = 0;
+
+        for (Map.Entry<String, Integer> entry : map.entrySet()) {
+            if (entry.getValue() > maxCount) {
+                maxCount = entry.getValue();
+                mostRepeated = entry.getKey();
+            }
+        }
+
+        System.out.println("Most Repeated String: " + mostRepeated);
+        System.out.println("Count: " + maxCount);
+    }
+}
