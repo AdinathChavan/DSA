@@ -1,0 +1,16 @@
+public class Main {
+    public static void main(String[] args) {
+        String mainString = "hello hello world hello";
+        String subString = "hello";
+
+        int count = 0;
+        int index = 0;
+
+        while ((index = mainString.indexOf(subString, index)) != -1) {
+            count++;
+            index += subString.length(); // move ahead
+        }
+
+        System.out.println("Occurrences: " + count);
+    }
+}
