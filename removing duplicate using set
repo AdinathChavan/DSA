@@ -1,0 +1,24 @@
+package Arrays;
+
+import java.util.Set;
+import java.util.TreeSet;
+
+public class removeDuplicate {
+
+    public static void remove(int[] arr){
+
+        Set<Integer> set  = new TreeSet<>();
+
+        for(int e :arr){
+            set.add(e);
+        }
+        System.out.println(set);
+        System.out.println(set.size());
+    }
+
+    public static void main(String[] args) {
+        int[] arr = {0,0,1,1,1,2,2,3,3,4};
+
+        remove(arr);
+    }
+}
