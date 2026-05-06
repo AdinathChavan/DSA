@@ -1,0 +1,15 @@
+package Arrays;
+
+public class ArrayNull {
+
+    public static void main(String[] args) {
+        int[] arr = {1,2,3,4};
+
+        int c = Math.abs(-4);
+        int d = Math.abs(9);
+
+        System.out.println(c);
+        System.out.println(d);
+        
+    }
+}
