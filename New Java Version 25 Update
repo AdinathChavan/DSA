@@ -1,0 +1,7 @@
+
+
+// java 25 new version not mandatory to write class and public static void main to run program 
+
+void main(){
+  System.out.println("New Java Version 25");
+}
