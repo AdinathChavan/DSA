@@ -1,0 +1,19 @@
+package Arrays;
+
+public class StringOp {
+
+
+    public static void main(String[] args) {
+
+        String name = "Adinath";
+
+         System.out.println(name.charAt(0));
+
+
+         String newname = name.replace(name.charAt(0), name.charAt(name.length()-1));
+
+        System.out.println(name);
+        System.out.println(newname);
+        
+    }
+}
