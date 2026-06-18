@@ -1,0 +1,38 @@
+class Solution {
+    public int[] productExceptSelf(int[] nums) {
+
+        int[] prefixMul = new int[nums.length];
+
+        int zeroCount = 0;
+        int mul = 1;
+        for(int i=0; i<nums.length; i++){
+            if(nums[i]==0){
+                zeroCount++;
+                mul *=1;
+                prefixMul[i]=mul;
+            }else{
+                mul *= nums[i];
+                prefixMul[i]=mul;
+            }
+        }
+
+        int n = nums.length-1;
+
+        for(int i=0; i<nums.length; i++){
+
+            if(zeroCount>1){   
+               nums[i]=0;
+            }
+            else if(zeroCount==1){
+                if(nums[i]==0){
+                    nums[i]=prefixMul[n];
+                }else{
+                    nums[i]=0;
+                }
+            }else{
+                nums[i]=prefixMul[n]/nums[i];
+            }
+            }
+            return nums;
+        }
+}
