@@ -1,0 +1,43 @@
+class Solution {
+    public int maxDistance(int[] positions, int m) {
+
+        Arrays.sort(positions);
+
+        int low = positions[0];
+        int high = positions[positions.length-1]-low;
+        int ans =0;
+
+        while(low<=high){
+            int mid = low + (high-low)/2;
+
+            if(maxDist(positions,mid, m)){
+                ans = mid;
+                low = mid+1;
+            }else{
+               high= mid-1;
+            }
+        } 
+
+        return ans;
+    }
+
+    public boolean maxDist(int[] positions, int mid, int m){
+
+        int last = positions[0];
+        int count =1;
+        for(int i=1; i<positions.length; i++){
+
+            if(positions[i]-last>=mid){
+                count++;
+                last = positions[i];
+            }
+
+            if(count>=m){
+                return true;
+            }
+
+        }
+
+        return false;
+    }
+}
