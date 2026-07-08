@@ -1,0 +1,43 @@
+class Solution {
+    public int aggressiveCows(int[] arr, int k) {
+        // code here
+        Arrays.sort(arr);
+        int n = arr.length;
+        int low = 1;
+        int high = arr[n-1]-arr[0];
+        
+        int ans = 0;
+        
+        while(low<=high){
+            
+            int mid = low + (high-low)/2;
+            
+            if(distCow(arr, k, mid)){
+                ans = mid;
+                low = mid+1;
+            }else{
+                high= mid-1;
+            }
+        }
+        
+        return ans;
+    }
+    
+    public boolean distCow(int[] arr, int k, int mid){
+        
+       
+        int last = arr[0];
+        int count = 1;
+        
+        for(int i=1; i<arr.length; i++){
+            
+            if(arr[i]-last>=mid){
+                count++;
+                last = arr[i];
+            }
+        }
+        
+        return count>=k;
+        
+    }
+}
