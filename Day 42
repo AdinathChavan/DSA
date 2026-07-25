@@ -1,0 +1,30 @@
+class Solution {
+    public int maxProduct(int n) {
+
+      int max =0;
+
+      List<Integer> list = new ArrayList<>();
+
+        while(n!=0){
+            int k = n%10;
+            list.add(k);
+            n = n/10;
+        }
+
+        for(int i=0; i<list.size(); i++){
+
+            int num = list.get(i);
+            int mul = 1;
+            for(int j =0; j<list.size(); j++){
+                if(i!=j){
+                    mul = list.get(i)*list.get(j);
+                    max = Math.max(mul, max);
+                }
+            }
+           
+        }
+
+        return max;
+    }
+      
+}
