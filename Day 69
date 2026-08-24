@@ -1,0 +1,30 @@
+class Solution {
+    public List<List<Integer>> permuteUnique(int[] nums) {
+
+        List<List<Integer>> ans = new ArrayList<>();
+        boolean[] map = new boolean[nums.length];
+        permutations(ans, new ArrayList<>(), nums, map);
+        return ans;   
+    }
+
+    public void permutations(List<List<Integer>> ans, List<Integer> list, int[] nums, boolean[] map ){
+
+        if(list.size()==nums.length){
+            if(ans.contains(list)) return;
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        for(int i=0; i<nums.length; i++){
+           
+            if(!map[i]){
+                list.add(nums[i]);
+                map[i]=true;
+                permutations(ans, list, nums, map);
+                map[i]=false;
+                list.removeLast();
+            }
+
+        }
+    }
+}
