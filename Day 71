@@ -1,0 +1,41 @@
+class Solution {
+    public List<List<String>> partition(String s) {
+
+        List<List<String>> ans = new ArrayList<>();
+
+        palindrome(0, ans, new ArrayList<>(), s);
+
+        return ans;
+        
+    }
+
+
+    public void palindrome(int i, List<List<String>> ans, List<String> list, String s){
+
+        if(i==s.length()){
+            ans.add(new ArrayList<>(list));
+        }
+
+        for(int idx =i; idx<s.length(); idx++){
+            if(check(i, idx, s)){
+               list.add(s.substring(i, idx+1));
+               palindrome(idx+1, ans, list, s);
+               list.removeLast();
+            }
+        }
+
+    }
+
+    public boolean check(int start, int end, String s){
+
+        while(start<=end){
+            if(s.charAt(start)!=s.charAt(end)){
+                return false;
+            }
+            start++;
+            end--;
+        }
+        return true;
+    }
+
+}
