@@ -1,0 +1,56 @@
+class Solution {
+    public List<List<String>> solveNQueens(int n) {
+         List<List<String>> ans = new ArrayList<>();
+
+        List<StringBuilder> board = new ArrayList<>();
+
+        String s = "";
+
+        for(int i=0; i<n; i++){
+            s = s+".";
+        }
+
+        for(int i =0; i<n; i++){
+            board.add(new StringBuilder(s));
+        }
+
+        int[] leftRow = new int[n];
+        int[] upper = new int[2*n-1];
+        int[] lower = new int[2*n-1];
+
+        solve(0, ans, board, leftRow, upper, lower, n);
+
+        System.out.println(board);
+
+        return ans;
+    }
+
+    public void solve(int col, List<List<String>> ans, List<StringBuilder> board, int[] leftRow, int[] upper, int[] lower, int n){
+
+        if(col==n){
+            List<String> snapshot = new ArrayList<>();
+            for(StringBuilder e : board){
+                snapshot.add(e.toString());
+            }
+            ans.add(new ArrayList<>(snapshot));
+            return;
+        }
+
+        for(int row=0; row<n; row++){
+
+            if(leftRow[row]==0 && lower[row+col]==0 && upper[n-1+col-row]==0){
+                board.get(row).setCharAt(col,'Q');
+                leftRow[row]=1;
+                lower[row+col]=1;
+                upper[n-1+col-row]=1;
+                solve(col+1, ans, board, leftRow, upper, lower, n);
+                board.get(row).setCharAt(col,'.');
+                leftRow[row]=0;
+                lower[row+col]=0;
+                upper[n-1+col-row]=0;
+            }
+
+        }
+
+    }
+}
