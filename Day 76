@@ -1,0 +1,30 @@
+class Solution {
+    public int change(int amount, int[] coins) {
+
+        Integer[][] dp = new Integer[coins.length][amount+1];
+        
+        return solve(0, amount, coins, 0, dp); 
+    }
+
+    public int solve(int i, int amount, int[] coins, int sum, Integer[][] dp){
+
+        if(sum==amount){
+            return 1;
+        }
+        
+        if(i==coins.length){
+            return 0;
+        }
+
+        if(dp[i][sum]!=null) return dp[i][sum];
+
+        int left =0;
+
+        if(sum+coins[i]<=amount){
+            left =  solve(i, amount, coins, sum+coins[i], dp);
+        }
+        int right = solve(i+1, amount, coins, sum, dp);
+
+        return dp[i][sum]=right+left;
+    }
+}
