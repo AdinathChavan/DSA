@@ -1,0 +1,22 @@
+class Solution {
+    public int LIS(int[] nums) {
+
+        Integer[][] dp = new Integer[nums.length][nums.length+1];
+        return solve(0,-1, nums,dp);
+   
+    }
+
+    public int solve(int i, int idx, int[] nums, Integer[][] dp){
+        if(i==nums.length) return 0;
+
+        if(dp[i][idx+1]!=null) return dp[i][idx+1];
+
+        int len = solve(i+1, idx, nums, dp);
+
+        if(idx==-1 || nums[i]>nums[idx]){
+            len = Math.max(len, 1+solve(i+1,i,nums, dp));
+        }
+        return dp[i][idx+1]=len;
+    }
+}
+
