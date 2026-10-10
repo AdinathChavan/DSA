@@ -1,0 +1,81 @@
+/**
+ * Definition for a binary tree node.
+ * public class TreeNode {
+ *     int val;
+ *     TreeNode left;
+ *     TreeNode right;
+ *     TreeNode(int x) { val = x; }
+ * }
+ */
+class Solution {
+    public List<Integer> distanceK(TreeNode root, TreeNode target, int k) {
+
+        List<Integer> ans = new ArrayList<>();
+
+        Queue<TreeNode> que = new LinkedList<>();
+
+        Map<Integer, TreeNode> parent = new HashMap<>();
+
+        if(root==null) return ans;
+
+        que.offer(root);
+
+        while(!que.isEmpty()){
+
+            int size = que.size();
+
+            for(int i=0; i<size; i++){
+
+                TreeNode node = que.poll();
+
+                if(node.left!=null){
+                    que.offer(node.left);
+                    parent.put(node.left.val, node);
+                }
+                if(node.right!=null){
+                    que.offer(node.right);
+                    parent.put(node.right.val, node);
+                }
+            }
+        }
+
+        Set<TreeNode> visited = new HashSet<>();
+
+        que.offer(target);
+
+        while(k>0 && !que.isEmpty()){
+
+            int size = que.size();
+
+            for(int i=0; i<size; i++){
+
+                TreeNode node = que.poll();
+
+                visited.add(node);
+
+                if(node.left!=null && !visited.contains(node.left)){
+                    que.offer(node.left);
+                    visited.add(node.left);
+                }
+                if(node.right!=null && !visited.contains(node.right)){
+                    que.offer(node.right);
+                    visited.add(node.right);
+                }
+                if(parent.containsKey(node.val) && !visited.contains(parent.get(node.val))){
+                    que.offer(parent.get(node.val));
+                    visited.add(parent.get(node.val));
+                }
+            }
+            k--;   
+        }
+
+        while(!que.isEmpty()){
+            ans.add(que.poll().val);
+        }
+
+        return ans;
+
+
+        
+    }
+}
