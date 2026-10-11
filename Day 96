@@ -1,0 +1,23 @@
+package Arrays;
+
+import java.util.*;
+
+public class Queue {
+
+    public static void main(String[] args) {
+
+        Map<Integer, List<Integer>> map = new TreeMap<>();
+
+        map.put(1,new ArrayList<>(List.of(1,2,3)));
+
+        List<Integer> list = map.get(1);
+
+        list.add(34);
+
+        map.put(1,list);
+
+        System.out.println(map);
+
+
+    }
+}
