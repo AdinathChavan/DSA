@@ -1,0 +1,50 @@
+class Solution {
+    public boolean findRotation(int[][] mat, int[][] target) {
+        
+        int n = 4;
+
+        while(n!=0){
+           rotate(mat);
+           System.out.println("Matrix "+n);
+           for(int[] e: mat){
+             for(int k : e){
+                System.out.print(k+" ");
+             }
+             System.out.println();
+           }
+           if(Arrays.deepEquals(mat, target)) return true;
+           n--;
+        }
+
+        return false;
+
+    }
+
+    public void rotate(int[][] mat){
+         for(int i=0; i<mat.length; i++){
+            swap(mat, i);
+        }
+
+        for(int i=0; i<mat.length; i++){
+            for(int j=i+1; j<mat[0].length; j++){
+                int temp = mat[i][j];
+                mat[i][j]=mat[j][i];
+                mat[j][i]=temp;
+            }
+        }
+
+    }
+
+    public void swap(int[][] mat, int i){
+        int left =0;
+        int right = mat.length-1;
+
+        while(left<right){
+            int temp = mat[left][i];
+            mat[left][i]= mat[right][i];
+            mat[right][i]=temp;
+            left++;
+            right--;
+        }
+    }
+}
