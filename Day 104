@@ -1,0 +1,29 @@
+class Solution {
+    public List<List<Integer>> allPathsSourceTarget(int[][] graph) {
+
+        List<List<Integer>> list = new ArrayList<>();
+
+        path(graph, 0, list, graph.length-1, new ArrayList<>());
+
+        return list;
+        
+    }
+
+    public void path(int[][] graph, int n, List<List<Integer>> ans, int target, List<Integer> list){
+
+        if(n == target+1) return;
+
+        list.add(n);
+
+        if(n == target) {
+            ans.add(new ArrayList<>(list));
+            return;
+        }
+
+        for(int i=0; i<graph[n].length; i++){  
+            path(graph, graph[n][i], ans, target, list);
+            list.removeLast();
+        }
+
+    }
+}
